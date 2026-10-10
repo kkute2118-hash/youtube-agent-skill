@@ -1,0 +1,91 @@
+# Channel launch kit: faceless money-maths explainers
+
+Built with this repo's skills (`/yt-plan`, `/yt-script`, `/yt-package`, `/yt-seo`, `/yt-shorts`)
+and their tools (`hookscore.py`, `title.py`). Nothing here gets published by itself. You upload it.
+
+## The channel
+
+**Idea:** short, visual money maths for Indian beginners. One idea per video, shown with numbers
+moving on screen. No face and no stock tips: it teaches the maths, it never tells anyone what to buy.
+
+**Why this niche over a kids channel:** finance ads pay far more per view than "Made for Kids"
+videos, which get no personalised ads and have comments switched off. It also fits what you already
+know from the backtesting work.
+
+**Name ideas** (check that the name and @handle are free before you pick):
+Paisa Maths · The Compounding Desk · Money in Numbers · Rupee Logic
+
+## voice.md (copy to `~/.claude/youtube/voice.md`)
+
+- **Who I'm talking to:** someone aged 22-30 in India with a first salary and a demat account they
+  opened but are scared to use.
+- **How I talk:** calm, plain sentences, one number at a time. Rupees, not dollars.
+- **Words I never use:** "guaranteed", "multibagger", "secret", "get rich", "dive in".
+- **What I will not claim:** returns I can't show, "this stock will go up", any figure without a source.
+- **Format:** faceless, dark background, numbers animate, captions burned in, under 60 s for Shorts
+  and 6-9 min for long videos. Every video says "Education only. Not investment advice."
+
+## Sample video (done)
+
+`sample-short-50-loss.mp4`: 49 s, 1080×1920. "Why a 50% Loss Needs a 100% Gain".
+Made for free: offline AI voice (Kokoro) plus animated slides. `make_short.py` rebuilds it. Change
+the `SCENES` list to make the next one.
+
+| piece | text | check |
+| --- | --- | --- |
+| Title | Why a 50% Loss Needs a 100% Gain | title.py 100/100 |
+| Thumbnail text | THE TRAP | 2 words, different from the title |
+| Hook | "Lose half your money, and you need to double it just to get back to where you started." | hookscore 46, weak |
+
+For the next version, swap in the stronger hook "Lose 50% and you need 100% to get back. This one
+sum is why big losses are so hard to recover from." (scored 63 in testing on a similar wording.)
+
+**Description**
+
+> Lose 50% and you need +100% just to break even. Here's the maths with ₹10,000, plus the recovery
+> table for 10%, 25%, 50% and 75% losses.
+> Education only. Not investment advice.
+> #investing #stockmarket #personalfinance
+
+## The first 3 long videos (Shorts get cut from each)
+
+| # | Title | Thumbnail | Hook (hookscore) | Promise |
+| --- | --- | --- | --- | --- |
+| 1 | Why a 50% Loss Needs a 100% Gain | THE TRAP | 63 workable | Why big losses are so hard to win back |
+| 2 | ₹60,000 Today or ₹500 a Month? 10 Years Later | SAME MONEY? | 51, rework the end | Lump sum vs SIP, worked through month by month |
+| 3 | The Rule of 72: When Your Money Doubles | DOUBLE WHEN? | 57 workable | A 5-second way to compare FD, PPF and index-fund returns |
+
+Before you record 2 and 3, check every rate you quote (FD, PPF, inflation) against its source
+on the day, and show the source on screen.
+
+## 4-week plan (`/yt-plan`: 3 uploads a week, not 7)
+
+| Week | Anchor (long, 6-9 min) | Cheap one | Shorts (cut from the anchor) |
+| --- | --- | --- | --- |
+| 1 | Video 1: 50% loss | The recovery table, on its own | 3 |
+| 2 | Video 2: lump sum vs SIP | Reply to the top comment from week 1 | 3 |
+| 3 | Video 3: Rule of 72 | "FD vs inflation in 30 seconds" | 3 |
+| 4 | Compounding: start at 25 vs 35 | Shorts that did best, remade | 3 |
+
+About 6-8 hours a week. If a week goes wrong, drop the cheap one first, never the anchor.
+
+## Monetisation: what has to happen
+
+YouTube Partner Program needs **1,000 subscribers** plus **either 4,000 public watch hours in 12
+months or 10 million Shorts views in 90 days**. Check the current numbers in YouTube Studio →
+Earn. Shorts views count toward joining but pay very little, so the long videos are what earns.
+That is why the plan keeps one long video a week.
+
+Rules that keep AI-made channels monetised:
+- Write every script yourself. Don't mass-produce near-identical videos: YouTube demonetises
+  "repetitive / inauthentic" content.
+- Keep it as teaching, never tips. Finance videos with "buy this" calls draw complaints and strikes.
+- When you upload, tick "altered or synthetic content" only if the video shows realistic fake
+  people or events. Animated slides with an AI voice normally don't need it.
+
+## Your steps
+
+1. Create the channel (YouTube app → profile → Create a channel). Use a brand account so you can
+   rename it later.
+2. Upload `sample-short-50-loss.mp4` as a Short using the title and description above.
+3. Make the next one by editing `SCENES` in `make_short.py`, or ask Claude for "the next video".
