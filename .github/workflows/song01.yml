@@ -6,6 +6,9 @@ on:
       seed:
         description: "Image seed"
         default: "4242"
+      reuse_images:
+        description: "Reuse scene images from the renders branch (1 = yes)"
+        default: "0"
       images_only:
         description: "Only make scene images (1 = yes)"
         default: "0"
@@ -26,6 +29,12 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-core fonts-dejavu-core libraqm0
       - name: Python deps
         run: pip install pillow requests numpy
+      - name: Reuse previous scene images
+        if: github.event.inputs.reuse_images == '1'
+        run: |
+          git fetch --depth 1 origin renders
+          mkdir -p studio/song01/out && git archive origin/renders scenes | tar -x -C studio/song01/out
+          ls studio/song01/out/scenes
       - name: Render
         env:
           SEED: ${{ github.event.inputs.seed }}
