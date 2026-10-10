@@ -107,7 +107,7 @@ or "inauthentic", and nobody else has the numbers. Each long video gives 2-3 Sho
 Rules for these: say "gross, before costs" where it applies, show the source table on screen, and
 never say "buy this". `make_long.py` + a `scenes_*.py` file renders each one.
 
-**Long video 1 (done):** `long-01-survivorship.mp4` (landscape, ~6 min), thumbnail `thumb-long-01.png`.
+**Long video 1 (done):** `long-01-survivorship.mp4` (landscape, 5 min), thumbnail `thumb-long-01.png`.
 Title "My Backtest Said 20% a Trade. The Real Number Was 15%" (title.py 98/100), thumbnail text
 "IT LIED". Hook scored 38 (weak) on hookscore; the README of the skill pack says that tool barely
 predicts real results, so judge it on the first week's retention instead.
