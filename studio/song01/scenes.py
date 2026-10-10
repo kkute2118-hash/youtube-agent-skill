@@ -56,3 +56,27 @@ CHORUS_SHOTS = ["C1", "C2", "C3", "C4"]
 FORM = [("intro", 4), ("chorus", 8), ("v1", 8), ("chorus", 8), ("v2", 8),
         ("v3", 8), ("v4", 8), ("chorus", 8), ("chorus", 8), ("outro", 4)]
 BPM = 100
+
+# Short, style-first prompts for the keyless fallback model (CLIP truncates after ~75 tokens).
+S = "3D Pixar style cartoon render, cute, bright colours, sunny Indian village,"
+BN = "cute fluffy tan cartoon bunny rabbit with long ears and red scarf"
+RC = "small shiny red toy car with big yellow wheels"
+KB = "cute cartoon Indian boy in orange kurta"
+MG = "cute cartoon Indian girl in pink dress with pink flower hairband"
+TR = "cute small white cartoon robot with blue joints and cyan eyes"
+SHORT = {
+    "C1": f"{S} {BN} driving a {RC}, side view, colourful houses and bunting",
+    "C2": f"{S} close-up of big yellow wheels of a {RC} on a dusty road, {BN} waving",
+    "C3": f"{S} {BN} driving a {RC} through a happy village market, children clapping, goat",
+    "C4": f"{S} {BN} in a {RC} honking the horn, colourful music notes in the air",
+    "V1a": f"{S} {KB} waving at roadside, a {RC} driven by a {BN} arrives",
+    "V1b": f"{S} {KB} and a {BN} laughing together in a {RC}",
+    "V2a": f"{S} {MG} waving under a big banyan tree, {RC} arriving",
+    "V2b": f"{S} {MG} and {KB} smiling in the back of a {RC}",
+    "V3a": f"{S} {TR} with a propeller on his head flying in blue sky, waving",
+    "V3b": f"{S} {TR} sitting in a {RC} with happy cartoon kids, laughing",
+    "V4a": f"{S} happy cartoon kids wearing seat belts in a {RC}, thumbs up, green hill behind",
+    "V4b": f"{S} {RC} climbing a winding road up a lush green hill, wide view",
+    "V4c": f"{S} view from a green hill top down to a colourful village fair with Ferris wheel and balloons",
+    "OUT": f"{S} cartoon Indian grandfather with white beard and glasses cheering with {KB}, {MG} and a {BN} at a village fair, Ferris wheel",
+}

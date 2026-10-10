@@ -8,7 +8,7 @@ import requests
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 sys.path.insert(0, os.path.dirname(__file__))
-from scenes import STYLE, SCENES, CHORUS, VERSES, VERSE_SHOTS, COUNT_AT, CHORUS_SHOTS, FORM, BPM
+from scenes import STYLE, SCENES, SHORT, CHORUS, VERSES, VERSE_SHOTS, COUNT_AT, CHORUS_SHOTS, FORM, BPM
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "out")
@@ -24,25 +24,43 @@ LINE = 2 * BAR                # 4.8 s
 
 
 # ---------------------------------------------------------------- images
+KEY = os.environ.get("POLLINATIONS_KEY", "").strip()
+
+
+def _save(path, data):
+    open(path, "wb").write(data)
+    im = Image.open(path).convert("RGB")
+    if not KEY:  # keyless output carries a corner watermark: trim the bottom strip
+        w, h = im.size
+        im = im.crop((0, 0, w, int(h * 0.93)))
+    im = im.resize((W, H), Image.LANCZOS) if im.size != (W, H) else im
+    im.save(path, quality=95)
+
+
 def fetch(key, prompt):
     path = os.path.join(IMG, f"{key}.jpg")
     if os.path.exists(path) and os.path.getsize(path) > 20000:
         return path
-    full = f"{prompt} {STYLE}"
-    url = ("https://image.pollinations.ai/prompt/" + urllib.parse.quote(full) +
-           f"?width={W}&height={H}&seed={SEED}&model=flux&nologo=true&enhance=false")
+    if KEY:
+        full = f"{STYLE}. {prompt}"
+        urls = [("https://gen.pollinations.ai/image/" + urllib.parse.quote(full) +
+                 f"?width={W}&height={H}&seed={SEED}&model=flux&nologo=true&enhance=false",
+                 {"Authorization": f"Bearer {KEY}"})]
+    else:
+        full = SHORT[key]
+        urls = []
+    urls.append(("https://image.pollinations.ai/prompt/" + urllib.parse.quote(full) +
+                 f"?width={W}&height={int(H*1.075)}&seed={SEED}&model=flux&nologo=true&enhance=false"
+                 + (f"&token={KEY}" if KEY else ""), {}))
     for attempt in range(8):
+        url, hdr = urls[min(attempt // 3, len(urls) - 1)] if KEY else urls[0]
         try:
-            r = requests.get(url, timeout=240)
+            r = requests.get(url, headers=hdr, timeout=240)
             if r.status_code == 200 and r.headers.get("content-type", "").startswith("image") and len(r.content) > 20000:
-                open(path, "wb").write(r.content)
-                im = Image.open(path).convert("RGB")
-                if im.size != (W, H):
-                    im = im.resize((W, H), Image.LANCZOS)
-                im.save(path, quality=95)
-                print(f"[ok] {key} ({len(r.content)//1024} KB)", flush=True)
+                _save(path, r.content)
+                print(f"[ok] {key} via {url.split('/')[2]} ({len(r.content)//1024} KB)", flush=True)
                 return path
-            print(f"[retry] {key} status {r.status_code}", flush=True)
+            print(f"[retry] {key} status {r.status_code} {r.text[:120] if r.status_code != 200 else ''}", flush=True)
         except Exception as e:  # noqa
             print(f"[retry] {key} {e}", flush=True)
         time.sleep(15 + attempt * 10)
@@ -220,4 +238,5 @@ if __name__ == "__main__":
     for i, (k, pr) in enumerate(SCENES.items()):
         fetch(k, pr)
         time.sleep(6)
-    render()
+    if os.environ.get("IMAGES_ONLY") != "1":
+        render()
