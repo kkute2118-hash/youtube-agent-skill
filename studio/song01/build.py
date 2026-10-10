@@ -75,7 +75,7 @@ def timeline():
         if name == "intro":
             segs.append(dict(start=t, dur=bars * BAR, shot="C1", text=None, kind="intro", count=None))
         elif name == "outro":
-            segs.append(dict(start=t, dur=bars * BAR, shot="OUT", text=None, kind="outro", count=None))
+            segs.append(dict(start=t, dur=bars * BAR, shot=os.environ.get("OUTRO_SHOT", "V2b"), text=None, kind="outro", count=None))
         else:
             lines = CHORUS if name == "chorus" else VERSES[name]
             shots = CHORUS_SHOTS if name == "chorus" else VERSE_SHOTS[name]
@@ -158,7 +158,7 @@ def render():
     title_b = text_layer("बनी की गाड़ी", 170, (255, 255, 255), stroke=(200, 20, 40), sw=12)
     title_c = text_layer("गिनती गाना - 1, 2, 3!", 64, (255, 255, 255))
     out_a = text_layer("शाबाश बच्चों!", 150, (255, 214, 0), stroke=(200, 20, 40), sw=12)
-    out_b = text_layer("फिर मिलेंगे — Krushna's Bharat", 64, (255, 255, 255))
+    out_b = text_layer("फिर मिलेंगे, दोस्तों!", 72, (255, 255, 255))
     nums = {n: text_layer(str(n), 300, (255, 255, 255), stroke=(220, 40, 60), sw=16, latin=True) for n in (1, 2, 3)}
     word = {1: "एक सवारी", 2: "दो सवारी", 3: "तीन सवारी"}
     numw = {n: text_layer(word[n], 70, (255, 214, 0)) for n in (1, 2, 3)}
