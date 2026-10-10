@@ -1,0 +1,33 @@
+name: Render Song 01 (free)
+
+on:
+  workflow_dispatch:
+    inputs:
+      seed:
+        description: "Image seed"
+        default: "4242"
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: System deps
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-noto-core fonts-dejavu-core libraqm0
+      - name: Python deps
+        run: pip install pillow requests numpy
+      - name: Render
+        env:
+          SEED: ${{ github.event.inputs.seed }}
+        run: python studio/song01/build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: song01
+          path: |
+            studio/song01/out/bunny-ki-gaadi-song01.mp4
+            studio/song01/out/scenes/
+          retention-days: 14
