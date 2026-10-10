@@ -89,3 +89,25 @@ Rules that keep AI-made channels monetised:
    rename it later.
 2. Upload `sample-short-50-loss.mp4` as a Short using the title and description above.
 3. Make the next one by editing `SCENES` in `make_short.py`, or ask Claude for "the next video".
+
+## Long videos from your own research (Backtesting-/research)
+
+These are the channel's best material. They're real tests you ran, so they can't be called copied
+or "inauthentic", and nobody else has the numbers. Each long video gives 2-3 Shorts.
+
+| # | Working title | Source file | The hook number |
+| --- | --- | --- | --- |
+| L1 ✅ | My Backtest Said 20% a Trade. The Real Number Was 15% | SURVIVORSHIP.md | 2,700 stocks; dropouts made 8.2% vs 18.4% |
+| L2 | 4x Margin Turned ₹1 Lakh Into ₹88 | STRATEGY_SHORTLIST.md | same strategy: ₹1.39 L in cash, ₹88 at 4x |
+| L3 | The Famous Breakout Checklist Didn't Beat Random Breakouts | S6_BREAKOUT_PLAYBOOK.md | 5,026 breakouts tested |
+| L4 | Sector Rotation Looked Perfect, Until I Checked Year by Year | SECTOR_TIMING_FINDINGS.md | 204,407 trades |
+| L5 | What the Top 25 Stocks of the Year Had in Common on Day 1 | S6_BREAKOUT_PLAYBOOK.md | +63% to +224% runs |
+| L6 | I Tested a Trend Strategy on Crypto and Gold, Step by Step | fx_crypto/STEP1-14 | a series, one step per video |
+
+Rules for these: say "gross, before costs" where it applies, show the source table on screen, and
+never say "buy this". `make_long.py` + a `scenes_*.py` file renders each one.
+
+**Long video 1 (done):** `long-01-survivorship.mp4` (landscape, ~6 min), thumbnail `thumb-long-01.png`.
+Title "My Backtest Said 20% a Trade. The Real Number Was 15%" (title.py 98/100), thumbnail text
+"IT LIED". Hook scored 38 (weak) on hookscore; the README of the skill pack says that tool barely
+predicts real results, so judge it on the first week's retention instead.
