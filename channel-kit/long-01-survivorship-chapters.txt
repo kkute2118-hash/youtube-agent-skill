@@ -1,0 +1,11 @@
+0:00 Backtesting, honestly
+0:20 First, the basics
+0:43 The trap
+1:21 An easier way to see it
+1:40 The fix
+2:05 The data
+2:32 Result 1: the breakout strategy
+3:16 Result 2: a pocket-pivot strategy
+3:41 Why this matters
+4:00 Your checklist
+4:34 One last thing

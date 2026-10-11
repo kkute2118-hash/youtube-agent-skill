@@ -111,3 +111,54 @@ never say "buy this". `make_long.py` + a `scenes_*.py` file renders each one.
 Title "My Backtest Said 20% a Trade. The Real Number Was 15%" (title.py 98/100), thumbnail text
 "IT LIED". Hook scored 38 (weak) on hookscore; the README of the skill pack says that tool barely
 predicts real results, so judge it on the first week's retention instead.
+
+**Long video 2 (done):** `long-02-margin.mp4` (landscape, 8:58, so mid-roll ads are allowed),
+thumbnail `thumb-long-02.png`. Source: STRATEGY_SHORTLIST.md.
+
+Title: **₹1 Lakh → ₹88: I Used AI to Test Margin Trading** (title.py 98/100). Thumbnail text: SAME TRADES.
+
+Description to paste:
+
+> I used AI to help me backtest 6 trading strategies on Indian stocks (Jan 2022 to Sep 2026), first
+> with my own money, then with 2x and 4x margin. Same trades, same exits. One strategy went from
+> ₹1 lakh to ₹1.39 lakh without margin, and to ₹88 with 4x margin. Here's why, which strategies
+> survived, and the one sum to do before you borrow to trade.
+>
+> Backtest assumptions: ₹1 lakh start, up to 10 open trades, 1% risk per trade, 25% position cap,
+> Indian delivery costs, 12.5% a year margin interest charged daily, ₹20 pledge fee per buy.
+> Margin calls were not simulated, so real results with margin would likely be worse.
+>
+> Education only. Not investment advice. Past results don't predict future ones.
+>
+> 0:00 AI + trading, honestly
+> 0:34 What the AI did
+> 1:11 The setup
+> 1:36 What margin is
+> 1:58 The tempting maths
+> 2:16 Strategy 3
+> 2:41 Why it happens
+> 3:53 All six strategies
+> 4:27 The surprise
+> 5:01 The survivor
+> 5:29 The quiet one
+> 6:07 Before you celebrate
+> 6:46 The one sum
+> 7:28 What AI did, and didn't do
+> 8:03 Your checklist
+> 8:26 One last thing
+>
+> #margintrading #stockmarketindia #backtesting #AItrading
+
+Chapters for long video 1 (paste into its description):
+
+    0:00 Backtesting, honestly
+    0:20 First, the basics
+    0:43 The trap
+    1:21 An easier way to see it
+    1:40 The fix
+    2:05 The data
+    2:32 Result 1: the breakout strategy
+    3:16 Result 2: a pocket-pivot strategy
+    3:41 Why this matters
+    4:00 Your checklist
+    4:34 One last thing

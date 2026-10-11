@@ -75,7 +75,10 @@ def draw(s, t):
             centered(d, 600, s["sub"], F(REG, 50), fade(MUTED, ease((t - 0.8) / 0.6)))
     elif k == "big":
         centered(d, 150, s["head"], F(BOLD, 64), fade(FG, head_k))
-        centered(d, 330, s["value"], F(BOLD, 220), fade(COL[s.get("col", "gold")], ease((t - 0.5) / 0.6)))
+        size = 220
+        while size > 80 and d.textlength(s["value"], font=F(BOLD, size)) > 1700:
+            size -= 10
+        centered(d, 330 + (220 - size) // 2, s["value"], F(BOLD, size), fade(COL[s.get("col", "gold")], ease((t - 0.5) / 0.6)))
         if s.get("sub"):
             for i, line in enumerate(wrap(d, s["sub"], F(REG, 48), 1500)):
                 centered(d, 650 + i * 64, line, F(REG, 48), fade(MUTED, ease((t - 1.2) / 0.6)))
@@ -96,7 +99,7 @@ def draw(s, t):
         base, top = 820, 330
         lo, hi = min(b[1] for b in bars), max(b[1] for b in bars)
         zero = base if lo >= 0 else (top + 40 if hi <= 0 else base - 120)
-        span = (zero - top) if hi > 0 else (base - zero)
+        span = (zero - top) if hi > 0 else (base - zero - 90)
         d.line([200, zero, 1720, zero], fill=COL["grey"], width=3)
         for i, bar in enumerate(bars):
             label, v, col = bar[:3]
