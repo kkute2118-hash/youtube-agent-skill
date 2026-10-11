@@ -94,17 +94,25 @@ def draw(s, t):
         n = len(bars)
         slot = 1500 / n
         base, top = 820, 330
-        zero = base if min(b[1] for b in bars) >= 0 else base - 120
+        lo, hi = min(b[1] for b in bars), max(b[1] for b in bars)
+        zero = base if lo >= 0 else (top + 40 if hi <= 0 else base - 120)
+        span = (zero - top) if hi > 0 else (base - zero)
         d.line([200, zero, 1720, zero], fill=COL["grey"], width=3)
-        for i, (label, v, col) in enumerate(bars):
+        for i, bar in enumerate(bars):
+            label, v, col = bar[:3]
             bk = ease((t - 0.6 - 0.5 * i) / 0.9)
             x0 = 210 + i * slot + slot * 0.2
             x1 = x0 + slot * 0.6
-            h = (zero - top) * abs(v) / vmax * bk
+            h = span * abs(v) / vmax * bk
             y0, y1 = (zero - h, zero) if v >= 0 else (zero, zero + h)
             if bk > 0:
-                d.rectangle([x0, y0, x1, y1], fill=COL[col])
-                txt = f"{v * bk:+.1f}{s.get('unit', '%')}" if s.get("signed") else f"{v * bk:.1f}{s.get('unit', '%')}"
+                d.rectangle([x0, y0, x1, max(y1, y0 + 4)], fill=COL[col])
+                if len(bar) > 3:
+                    txt = bar[3]  # fixed label, shown once the bar has grown
+                elif s.get("signed"):
+                    txt = f"{v * bk:+.1f}{s.get('unit', '%')}"
+                else:
+                    txt = f"{v * bk:.1f}{s.get('unit', '%')}"
                 f = F(BOLD, 56)
                 tw = d.textlength(txt, font=f)
                 ty = y0 - 75 if v >= 0 else y1 + 12
@@ -121,13 +129,14 @@ def draw(s, t):
             d.text((160 + j * cw, 270), c, font=F(BOLD, 40), fill=MUTED)
         for i, row in enumerate(s["rows"]):
             rk = ease((t - 0.6 - 0.6 * i) / 0.5)
-            y = 350 + i * 110
-            d.rounded_rectangle([140, y - 18, 1780, y + 78], 18, fill=fade(PANEL, rk))
+            step = min(110, 560 // len(s["rows"]))
+            y = 350 + i * step
+            d.rounded_rectangle([140, y - 14, 1780, y + step - 22], 18, fill=fade(PANEL, rk))
             for j, cell in enumerate(row):
                 col = FG
                 if isinstance(cell, tuple):
                     cell, col = cell[0], COL[cell[1]]
-                d.text((160 + j * cw, y), cell, font=F(BOLD if j == 0 else REG, 50), fill=fade(col, rk))
+                d.text((160 + j * cw, y), cell, font=F(BOLD if j == 0 else REG, 50 if step >= 110 else 42), fill=fade(col, rk))
     return img
 
 
@@ -157,6 +166,20 @@ def prepare(s):
         s["_at"] = [0.6 + i * (speak - 0.6) / len(s["items"]) for i in range(len(s["items"]))]
 
 
+def write_chapters(scenes, path):
+    """YouTube chapters: one per scene tag, the first at 0:00, each at least 10 s long."""
+    t, lines, last = 0.0, [], None
+    for s in scenes:
+        label = s.get("tag") or s["head"]
+        if label != last and (not lines or t - lines[-1][0] >= 10):
+            lines.append((t, label))
+            last = label
+        t += s["dur"]
+    with open(path, "w") as f:
+        for start, label in lines:
+            f.write(f"{int(start // 60)}:{int(start % 60):02d} {label}\n")
+
+
 def main(scene_file, out):
     spec = importlib.util.spec_from_file_location("scenes", scene_file)
     mod = importlib.util.module_from_spec(spec)
@@ -171,6 +194,7 @@ def main(scene_file, out):
         audio.append(a)
         prepare(s)
     sf.write("voice_long.wav", np.concatenate(audio), sr)
+    write_chapters(scenes, out.rsplit(".", 1)[0] + "-chapters.txt")
     enc = subprocess.Popen(
         ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
          "-r", str(FPS), "-i", "-", "-i", "voice_long.wav", "-c:v", "libx264", "-pix_fmt", "yuv420p",
