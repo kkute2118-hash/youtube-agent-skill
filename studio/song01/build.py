@@ -154,7 +154,7 @@ def render():
     BAND = lower_band()
     segs, total = timeline()
     imgs = {k: Image.open(os.path.join(IMG, f"{k}.jpg")).convert("RGB") for k in SCENES}
-    title_a = text_layer("Krushna's Bharat", 74, (255, 214, 0), latin=True)
+    title_a = text_layer("Chintu Aur Dost", 74, (255, 214, 0), latin=True)
     title_b = text_layer("बनी की गाड़ी", 170, (255, 255, 255), stroke=(200, 20, 40), sw=12)
     title_c = text_layer("गिनती गाना - 1, 2, 3!", 64, (255, 255, 255))
     out_a = text_layer("शाबाश बच्चों!", 150, (255, 214, 0), stroke=(200, 20, 40), sw=12)

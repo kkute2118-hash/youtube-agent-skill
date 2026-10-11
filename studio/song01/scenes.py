@@ -1,4 +1,4 @@
-"""Scene prompts and lyrics for Song 01 - Bunny ki Gaadi (Krushna's Bharat)."""
+"""Scene prompts and lyrics for Song 01 - Bunny ki Gaadi (Chintu Aur Dost)."""
 
 STYLE = ("Cinematic 3D animated feature-film style children's cartoon, bright cheerful colours, "
          "warm sunlight, sunny Indian village, big expressive eyes, soft global illumination, "
@@ -8,7 +8,7 @@ BUNNY = ("Bunny, a funny friendly tan-brown cartoon rabbit with very long ears w
          "big shiny eyes, two big front teeth and a huge happy grin, wearing an olive-green vest and a small red scarf")
 CAR = ("a small round bright-red open-top toy-like car with big yellow wheels, a rubber horn bulb "
        "and an orange marigold garland on the front")
-KRUSHNA = ("Krushna, an 8-year-old Indian boy with messy thick black hair, big brown eyes, "
+CHINTU = ("Chintu, an 8-year-old Indian boy with messy thick black hair, big brown eyes, "
            "orange kurta, blue sleeveless vest, cream shorts, brown cloth satchel")
 MEERA = ("Meera, an 8-year-old Indian girl with wavy black hair, a pink hairband with a pink flower, "
          "pink kurta with gold patterns, mustard-yellow pants, small school bag")
@@ -23,16 +23,16 @@ SCENES = {
     "C2": f"Close-up low angle of the big yellow wheels of {CAR} spinning on a dusty village road with dust puffs, {BUNNY} above bouncing in his seat and waving one paw.",
     "C3": f"Wide shot: {BUNNY} drives {CAR} slowly through a cheerful Indian village market; happy children, a smiling chai seller and a white goat clap and dance as it passes, bunting overhead.",
     "C4": f"Medium close-up: {BUNNY} sits in {CAR} and squeezes the shiny rubber horn bulb with a huge grin, long ears standing straight up, little colourful musical notes floating out of the horn, birds fluttering from a tree.",
-    "V1a": f"{KRUSHNA} stands at a sunny village roadside waving happily as {CAR} driven by {BUNNY} approaches.",
-    "V1b": f"{KRUSHNA} happily sits in the passenger seat of {CAR} next to {BUNNY} who is driving, both laughing, village lane behind them.",
-    "V2a": f"{MEERA} waves cheerfully under a huge banyan tree in an Indian village as {CAR} arrives, {BUNNY} driving and {KRUSHNA} in the front seat.",
-    "V2b": f"{MEERA} sits happily in the back seat of {CAR}, {KRUSHNA} in the front seat turning to smile at her, {BUNNY} driving, village road.",
-    "V3a": f"{TOTO} flies down from a bright blue sky with his propeller spinning, waving, above {CAR} where {BUNNY}, {KRUSHNA} and {MEERA} look up excitedly.",
-    "V3b": f"{TOTO} sits in the back seat of {CAR} next to {MEERA}, all friends laughing together, {KRUSHNA} in front, {BUNNY} driving.",
-    "V4a": f"{CAR} is stopped at the foot of a steep green hill; {KRUSHNA}, {MEERA} and {TOTO} wear seat belts across their chests and give a big thumbs-up, {BUNNY} at the wheel smiling.",
+    "V1a": f"{CHINTU} stands at a sunny village roadside waving happily as {CAR} driven by {BUNNY} approaches.",
+    "V1b": f"{CHINTU} happily sits in the passenger seat of {CAR} next to {BUNNY} who is driving, both laughing, village lane behind them.",
+    "V2a": f"{MEERA} waves cheerfully under a huge banyan tree in an Indian village as {CAR} arrives, {BUNNY} driving and {CHINTU} in the front seat.",
+    "V2b": f"{MEERA} sits happily in the back seat of {CAR}, {CHINTU} in the front seat turning to smile at her, {BUNNY} driving, village road.",
+    "V3a": f"{TOTO} flies down from a bright blue sky with his propeller spinning, waving, above {CAR} where {BUNNY}, {CHINTU} and {MEERA} look up excitedly.",
+    "V3b": f"{TOTO} sits in the back seat of {CAR} next to {MEERA}, all friends laughing together, {CHINTU} in front, {BUNNY} driving.",
+    "V4a": f"{CAR} is stopped at the foot of a steep green hill; {CHINTU}, {MEERA} and {TOTO} wear seat belts across their chests and give a big thumbs-up, {BUNNY} at the wheel smiling.",
     "V4b": f"Wide view: {CAR} with four happy friends wearing seat belts slowly climbs a winding road up a lush green hill in the Indian countryside.",
     "V4c": f"From the top of a green hill, {CAR} with {BUNNY} and friends looks down at a colourful Indian village fair with a Ferris wheel, balloons and stalls in a sunny valley.",
-    "OUT": f"At a colourful Indian village fair with a Ferris wheel and balloons, {DADAJI} claps and cheers as {BUNNY}, {KRUSHNA}, {MEERA} and {TOTO} wave happily at the camera next to {CAR}.",
+    "OUT": f"At a colourful Indian village fair with a Ferris wheel and balloons, {DADAJI} claps and cheers as {BUNNY}, {CHINTU}, {MEERA} and {TOTO} wave happily at the camera next to {CAR}.",
 }
 
 CHORUS = ["बनी की गाड़ी, चली रे चली,",
@@ -40,7 +40,7 @@ CHORUS = ["बनी की गाड़ी, चली रे चली,",
           "गोल-गोल पहिए, घूमें गोल,",
           "सब मिलकर बोलो — पों! पों! पों!"]
 VERSES = {
-    "v1": ["रस्ते में खड़ा था कृष्णा प्यारा,", "बोला, \"बनी, मुझे भी ले चलो यारा!\"",
+    "v1": ["रस्ते में खड़ा था चिंटू प्यारा,", "बोला, \"बनी, मुझे भी ले चलो यारा!\"",
            "एक सवारी बैठ गई,", "गाड़ी फिर से चल पड़ी!"],
     "v2": ["आगे मिली मीरा, बस्ता लेकर,", "बोली, \"मुझको भी ले चलो मेले पर!\"",
            "दो सवारी बैठ गईं,", "गाड़ी फिर से चल पड़ी!"],
